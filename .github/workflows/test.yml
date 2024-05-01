@@ -1,17 +1,32 @@
-name: issue created or edited
+name: Generate PDF from Issue Body
 
 on:
   issues:
-    types: [opened, edited, reopened, labeled, unlabeled]
+    types: [edited]
 
 jobs:
-  issue_edited:
+  generate_pdf:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v2
       
-      - name: Print updated issue body
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Install Marp CLI
+        run: npm install -g @marp-team/marp-cli
+
+      - name: Generate PDF
         run: |
-          echo "Updated issue body:"
-          echo "${{ github.event.issue.body }}"
+          echo "${{ github.event.issue.body }}" > issue.md
+          marp issue.md --pdf --output issue.pdf
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v2
+        with:
+          name: issue-pdf
+          path: issue.pdf
