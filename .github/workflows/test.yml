@@ -14,13 +14,6 @@ jobs:
       - name: Get issue body
         run: |
           echo "${{ github.event.issue.body }}" > issue.md
-      - name: Get configuration
-        run: |
-          directory=$(jq -r .directory config.json)
-          output_format=$(jq -r .output_format config.json)
-          echo "::set-output name=DIR::${directory}"
-          echo "::set-output name=FORMAT::${output_format}"
-        id: config
       - name: Generate PDF
         run: |
           docker run --rm -u root --init -v "$(pwd):/home/marp/app/" 
