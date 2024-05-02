@@ -1,0 +1,189 @@
+/* @theme seminar */
+
+@import 'gaia';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+
+:root {
+  --color-background: #fff;
+  --color-foreground: #333;
+  --color-highlight: #57aee7;
+}
+
+section {
+  background-image: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 50;
+  padding-top: 100px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: 20pt;
+
+  /* ロゴ */
+  /* background-image: url("katolab-icon.png");
+  background-repeat: no-repeat;
+  background-position: 97% 3%;
+  background-size: 10% auto, 100% 100%;  */
+
+  z-index: 2;
+}
+
+strong,b {
+  /*background-color: #d6fab0;*/
+  /* color: var(--color-highlight); */
+}
+
+header {
+  background-color: var(--color-highlight);
+  color: #fff;
+  font-size: 1em;
+  font-weight: 600;
+  /*
+  height: 100px;
+  padding: 20px;
+  */
+}
+
+h3 {
+  padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+  background: #f4f4f4;/*背景色*/
+  border-left: solid 10px var(--color-highlight);/*左線*/
+  border-bottom: solid 6px #d7d7d7;/*下線*/
+  font-size: 30px;
+  margin-bottom: 3px;
+  }
+
+blockquote {
+  max-width: 90%;
+  border-top: 0.1em dashed #555;
+  font-size: 60%;
+  position: absolute;
+  bottom: 20px;
+}
+blockquote::before {
+  content: "";
+}
+blockquote::after {
+  content: "";
+}
+
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+
+code {
+  font-family: 'Source Code Pro', monospace;
+}
+
+
+section.strong {
+  background: linear-gradient(transparent 0%, #31475e 0%);
+  font-weight: bold; 
+}
+
+/* ページ数 */
+/* https://github.com/marp-team/marpit/issues/271 */
+section::after {
+  font-weight: 700;
+  content: attr(data-marpit-pagination) '/' attr(data-marpit-pagination-total);
+}
+
+ul ul {
+  font-size: 0.9em;
+}
+
+section.lead h1 {
+  color: var(--color-highlight);
+  text-align: left;
+}
+section.lead h1 strong {
+  -webkit-text-stroke: 1px var(--color-highlight);
+}
+section.lead h2 {
+  color: var(--color-highlight);
+  text-align: left;
+}
+section.lead h2 strong {
+  -webkit-text-stroke: 1px var(--color-highlight);
+}
+section.lead h3 {
+  color: var(--color-highlight);
+  text-align: left;
+}
+section.lead h3 strong {
+  -webkit-text-stroke: 1px var(--color-highlight);
+}
+section.lead h4 {
+  color: var(--color-highlight);
+  text-align: left;
+}
+section.lead h4 strong {
+  -webkit-text-stroke: 1px var(--color-highlight);
+}
+
+section.lead h5 {
+  color: var(--color-highlight);
+  text-align: left;
+}
+section.lead h5 strong {
+  -webkit-text-stroke: 1px var(--color-highlight);
+}
+section.lead p {
+  text-align: right;
+}
+
+
+.split-v {
+  display: flex;
+  justify-content: center;
+  align-items: satrt;
+  width:100%
+}
+
+.split-v>* {
+  margin-right: 1rem;
+  font-size: 25px;
+}
+
+.split-v>*:last-child {
+  margin-right: 0;
+}
+
+.split-h {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* custom-styles.css */
+thead th {text-align: center !important;}
+thead th {background: #fff;}
+tbody tr:nth-child(2n+1) {background: #fff;}
+tbody tr:nth-child(2n) {background: #fff;}
+
+div.tweet {
+  background: #eaf6fa;
+  border: solid 4px #97bff3;
+  border-radius: 16px;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 0rem 1rem;
+  position: relative;
+  opacity: 0.8;
+  font-size: 80%;
+  font-weight: bold;
+}
+
+div.tweet strong {
+  color: var(--text-main-color);
+}
+
+div.tweet::before {
+  content: "➡本研究の目的";
+  color: #1a69d1;
+  font-weight: 700;
+  display: block;
+  transform: translateX(-15px);
+  transform: translateY(-15px);
+} 
