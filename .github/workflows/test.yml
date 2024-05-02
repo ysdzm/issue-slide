@@ -3,6 +3,9 @@ name: Generate PDF from Issue Body
 on:
   issues:
     types: [edited]
+  push:
+    branches:
+      - main
 
 jobs:
   marp-to-pdf:
@@ -16,7 +19,7 @@ jobs:
           echo "${{ github.event.issue.body }}" > issue.md
       - name: Generate PDF
         run: |
-          docker run --rm -v $PWD:/home/marp/app/ -e LANG=$LANG marpteam/marp-cli issue.md --allow-local-files
+          docker run --rm -v $PWD:/home/marp/app/ -e LANG=$LANG marpteam/marp-cli issue.md
       - uses: actions/upload-artifact@v2
         with:
           name: output_slide
