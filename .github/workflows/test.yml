@@ -16,7 +16,7 @@ jobs:
           echo "${{ github.event.issue.body }}" > issue.md
       - name: Generate PDF
         run: |
-          docker run --rm -v $PWD:/home/marp/app/ -e LANG=$LANG marpteam/marp-cli issue.md
+          docker run --rm -v $PWD:/home/marp/app/ -e LANG=$LANG marpteam/marp-cli issue.md --allow-local-files
       - uses: actions/upload-artifact@v2
         with:
           name: output_slide
