@@ -24,8 +24,8 @@ try:
         channels=channel_id,
         file=pdf_data,
         filename="issue.pdf",
-        title="Test upload",
-        initial_comment="Here is the latest version of the file!",
+        title="ゼミ資料",
+        initial_comment="今週のゼミ資料を共有いたします",
     )
     logger.info(response)
 
