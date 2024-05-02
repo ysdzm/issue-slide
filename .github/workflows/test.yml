@@ -17,12 +17,9 @@ jobs:
       - name: Get issue body
         run: |
           echo "${{ github.event.issue.body }}" > issue.md
-      - name: Change directory permission
-        run: |
-          sudo chmod -R 775 $PWD
       - name: Generate PDF
         run: |
-          docker run --rm --init -v $PWD:/home/marp/app/ -e LANG=$LANG marpteam/marp-cli issue.md --pdf --workdir /github/workspace
+          docker run --rm --init -v $PWD:/home/marp/app/ -e LANG=$LANG -e MARP_USER="$(id -u):$(id -g)" marpteam/marp-cli issue.md --pdf
       - uses: actions/upload-artifact@v2
         with:
           name: output_slide
