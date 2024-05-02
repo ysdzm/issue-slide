@@ -19,7 +19,7 @@ jobs:
           echo "${{ github.event.issue.body }}" > issue.md
       - name: Generate PDF
         run: |
-          docker run --rm --init -v $PWD:/home/marp/app/ -e LANG=$LANG -e MARP_USER="$(id -u):$(id -g)" marpteam/marp-cli slide-deck.md --pdf --theme seminar.css
+          docker run --rm --init -v $PWD:/home/marp/app/ -e LANG=$LANG -e MARP_USER="$(id -u):$(id -g)" marpteam/marp-cli issue.md --pdf --theme seminar.css
 
       - uses: actions/upload-artifact@v2
         with:
