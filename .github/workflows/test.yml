@@ -17,13 +17,10 @@ jobs:
       - name: Get issue body
         run: |
           echo "${{ github.event.issue.body }}" > issue.md
-      - name: Check CSS file
-        run: |
-          ls -l $GITHUB_WORKSPACE/seminar.css
-          cat $GITHUB_WORKSPACE/seminar.css
       - name: Generate PDF
         run: |
-          docker run --rm --init -v $PWD:/home/marp/app/ -v $GITHUB_WORKSPACE/seminar.css:/home/marp/app/seminar.css -e LANG=$LANG -e MARP_USER="$(id -u):$(id -g)" marpteam/marp-cli issue.md --pdf --allow-local-files
+          docker run --rm --init -v $PWD:/home/marp/app/ -e LANG=$LANG -e MARP_USER="$(id -u):$(id -g)" marpteam/marp-cli slide-deck.md --pdf --theme seminar.css
+
       - uses: actions/upload-artifact@v2
         with:
           name: output_slide
