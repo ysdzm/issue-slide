@@ -1,4 +1,4 @@
-name: Generate PDF from Issue Body
+name: Generate PDF from Issue Body and Upload to Slack
 
 on:
   issues:
@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  marp-to-pdf:
+  marp-to-pdf-and-upload:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,8 +20,8 @@ jobs:
       - name: Generate PDF
         run: |
           docker run --rm --init -v $PWD:/home/marp/app/ -e LANG=$LANG -e MARP_USER="$(id -u):$(id -g)" marpteam/marp-cli issue.md --pdf --theme seminar.css
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: output_slide
-          path: issue.pdf
+      - name: Upload PDF to Slack
+        run: |
+          python upload_to_slack.py
+        env:
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
